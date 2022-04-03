@@ -1,24 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 export const Login = () => {
 
     const [password, setPassword] = useState('');
     const [email,setEmail] = useState('');
 
-useEffect(()=>{
-    alert('Executando essa mensagem com useEffect somente esse vez quando é criado o componente')
-},[])
 
-useEffect(()=>{
-    console.log(email)
-
-},[email]);// Toda vez que o estado do email for alterado será executado a instrução acima(console.log(emai))
-
-useEffect(()=>{
-    console.log(password)
-},[password]); // Toda vez que o estado do email for alterado será executado a instrução acima(console.log(emai))
-
-
+const emailLength = useMemo(()=>{
+        return email.length * 1000
+},[email.length])
 
     const handlerEntrar = () => {
             console.log(email);
@@ -48,8 +38,7 @@ useEffect(()=>{
 
 
 
-/** Na aula 06 foi explicado como usar a navegação utilizando função com useNavigation
- * 
+/** Instruções das aulas 06 até a 08 
  * 
  * 
    import { useNavigate } from "react-router-dom";
@@ -58,6 +47,20 @@ useEffect(()=>{
 export const Login = ()=>{
 
     const navigate = useNavigate();
+
+    useEffect(()=>{
+    alert('Executando essa mensagem com useEffect somente esse vez quando é criado o componente')
+},[])
+
+useEffect(()=>{
+    console.log(email)
+
+},[email]);// Toda vez que o estado do email for alterado será executado a instrução acima(console.log(emai))
+
+useEffect(()=>{
+    console.log(password)
+},[password]); // Toda vez que o estado do email for alterado será executado a instrução acima(console.log(emai))
+
 
     const handleClick = ()=>{
         navigate('/pagina-inicial')
